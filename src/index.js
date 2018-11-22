@@ -1,8 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import 'pure-css'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 
-ReactDOM.render(<div>Hello World!</div>, document.getElementById('root'))
+const store = createStore(reducer)
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+ReactDOM.render(
+  <Provider store={store}>
+    <div>Hello World!</div>
+  </Provider>,
+  document.getElementById('root')
+)
