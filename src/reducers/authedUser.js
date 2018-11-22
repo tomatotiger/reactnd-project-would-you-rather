@@ -1,1 +1,3 @@
-export default function authedUser (state = null, action) {return state}
+export default function authedUser (state = null, action) {
+  return state
+}
