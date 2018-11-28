@@ -1,13 +1,14 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-class LeaderBoard extends Component{
+class LeaderBoard extends Component {
   render () {
-    return(
-      <div>
-        Leader Board
-      </div>
+    return (
+        <div>
+          Leader Board
+        </div>
     )
   }
 }
 
-export default LeaderBoard
+export default connect()(LeaderBoard)

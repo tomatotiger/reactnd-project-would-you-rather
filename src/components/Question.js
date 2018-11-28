@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-class Question extends Component{
+class Question extends Component {
   render () {
-    return (
-      <div>
-        Question
-      </div>
-    )
+    return <div>Question</div>
   }
 }
 
-export default Question
+function mapStateToProps ({ authedUser, questions, users }, { id }) {
+  const question = questions[id]
+  const user = users[question.author]
+  return {
+    authedUser,
+    question,
+    user
+  }
+}
+
+export default connect(mapStateToProps)(Question)

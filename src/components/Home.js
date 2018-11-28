@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-class Home extends Component{
+class Home extends Component {
   render () {
-    return(
+    return (
       <div>
         Home
       </div>
@@ -10,4 +11,12 @@ class Home extends Component{
   }
 }
 
-export default Home
+function mapStateToProps ({ questions }) {
+  return {
+    questionIds: Object.keys(questions).sort(
+      (a, b) => questions[a].timestamp - questions[b].timestamp
+    )
+  }
+}
+
+export default connect(mapStateToProps)(Home)
