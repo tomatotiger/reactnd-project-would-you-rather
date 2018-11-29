@@ -4,11 +4,16 @@ import { connect } from 'react-redux'
 import Nav from './Nav'
 import Login from './Login'
 import Home from './Home'
+import { handleInitialData } from '../actions/shared'
 
 class App extends Component {
+  componentDidMount () {
+    this.props.dispatch(handleInitialData())
+  }
+
   render () {
     return (
-      <div class='container'>
+      <div className='container'>
         <Nav />
         <div className='content'>
           {this.props.loggedIn === true ? <Home /> : <Login />}
