@@ -16,7 +16,7 @@ class App extends Component {
       <div className='container'>
         <Nav />
         <div className='content'>
-          {this.props.loggedIn === true ? <Home /> : <Login />}
+          <Home />
         </div>
       </div>
     )

@@ -16,7 +16,6 @@ export default function questions (state = {}, action) {
       return {
         ...state,
         [action.question.id]: action.question
-        // users[action.question.authedUser].questions.concat([action.question.id])
       }
     case ANSWER_QUESTION:
       const question = { action }
