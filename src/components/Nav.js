@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { PacmanLoader } from 'react-spinners'
 
 class Nav extends Component {
   render () {
+    const { authedUserInfo } = this.props
     return (
       <div className='home-menu pure-menu pure-menu-horizontal pure-menu-fixed'>
         <ul className='pure-menu-list'>
@@ -22,7 +25,19 @@ class Nav extends Component {
           </li>
           <li className='pure-menu-item'>
             <div className='nav-user'>
-              Hello, Player! <img />
+              {authedUserInfo === undefined ? (
+                <div className='sweet-loading'>
+                  <PacmanLoader color={'#2fbea4'} loading={true} size={13} />
+                </div>
+              ) : (
+                <div>
+                  Hello, {authedUserInfo.name}
+                  <img
+                    className='authed-user-avatar'
+                    src={authedUserInfo.avatarURL}
+                  />
+                </div>
+              )}
             </div>
           </li>
           <li className='pure-menu-item'>
@@ -36,4 +51,8 @@ class Nav extends Component {
   }
 }
 
-export default Nav
+function mapStateToProps ({ authedUser, users }) {
+  return { authedUserInfo: users[authedUser] }
+}
+
+export default connect(mapStateToProps)(Nav)

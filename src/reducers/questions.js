@@ -5,7 +5,6 @@ import {
 } from '../actions/questions'
 
 export default function questions (state = {}, action) {
-  console.log('>>> questions reducer: ', state)
   switch (action.type) {
     case RECEIVE_QUESTIONS:
       return {

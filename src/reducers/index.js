@@ -5,7 +5,7 @@ import auth from './auth'
 import { loadingBarReducer } from 'react-redux-loading'
 
 export default combineReducers({
-  auth,
+  authedUser: auth,
   users,
   questions,
   loadingBar: loadingBarReducer

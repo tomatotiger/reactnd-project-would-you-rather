@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading'
 import Nav from './Nav'
 import Login from './Login'
 import Home from './Home'
@@ -13,10 +14,17 @@ class App extends Component {
 
   render () {
     return (
-      <div className='container'>
-        <Nav />
-        <div className='content'>
-          <Home />
+      <div>
+        <LoadingBar style={{ 'z-index': '4', backgroundColor: 'grey' }} />
+        <div className='container'>
+          {this.props.loading === true ? null : (
+            <div>
+              <Nav />
+              <div className='content'>
+                <Home />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     )
@@ -44,9 +52,9 @@ class App extends Component {
 //   )
 // }
 
-function mapStateToProps ({ isAuthenticated }) {
+function mapStateToProps ({ authedUser }) {
   return {
-    loggedIn: isAuthenticated !== null && isAuthenticated !== undefined
+    loading: authedUser === null
   }
 }
 
