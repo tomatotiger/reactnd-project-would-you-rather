@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatQuestion } from '../utils/helper'
+import { withRouter, Link } from 'react-router-dom'
 
 class QuestionItem extends Component {
   render () {
-    const { author, question, summary } = this.props
+    const { id, author, summary } = this.props
     return (
-      <div className='question-item'>
+      <div className='question-list-item'>
         <h5 className='question-title'>{author.name} asks: </h5>
         <div>
-          <img src={author.avatarURL} className='question-item-avatar' />
+          <img src={author.avatarURL} className='avatar-middle' />
           <div className='question-summary'>
             <h5>Would you rather</h5>
             <span>{summary}</span>
-            <a href='#' className='question-item-link'>
+            <Link to={`/question/${id}`} className='question-item-link'>
               View Poll
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -26,10 +26,11 @@ class QuestionItem extends Component {
 function mapStateToProps ({ questions, users }, { id }) {
   const question = questions[id]
   return {
+    id,
     question,
     author: users[question.author],
     summary: `... ${question.optionOne.text.substring(0, 25)} ...`
   }
 }
 
-export default connect(mapStateToProps)(QuestionItem)
+export default withRouter(connect(mapStateToProps)(QuestionItem))

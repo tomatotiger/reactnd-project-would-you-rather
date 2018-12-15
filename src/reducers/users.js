@@ -9,9 +9,16 @@ export default function users (state = {}, action) {
       }
 
     case ANSWER_QUESTION:
+      const { authedUser, qid, answer } = action
       return {
         ...state,
-        answers: { action }
+        [authedUser]: {
+          ...state[authedUser],
+          answers: {
+            ...state[authedUser].answers,
+            [qid]: answer
+          }
+        }
       }
 
     case ADD_QUESTION:

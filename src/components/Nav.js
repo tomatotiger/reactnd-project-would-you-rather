@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { PacmanLoader } from 'react-spinners'
 
 class Nav extends Component {
@@ -9,19 +10,19 @@ class Nav extends Component {
       <div className='home-menu pure-menu pure-menu-horizontal pure-menu-fixed'>
         <ul className='pure-menu-list'>
           <li className='pure-menu-item pure-menu-selected'>
-            <a href='#' className='pure-menu-link'>
+            <Link to='/' className='pure-menu-link'>
               Home
-            </a>
+            </Link>
           </li>
           <li className='pure-menu-item'>
-            <a href='#' className='pure-menu-link'>
+            <Link to='new' className='pure-menu-link'>
               New Question
-            </a>
+            </Link>
           </li>
           <li className='pure-menu-item'>
-            <a href='#' className='pure-menu-link'>
+            <Link to='leader-board' className='pure-menu-link'>
               Leader Board
-            </a>
+            </Link>
           </li>
           <li className='pure-menu-item'>
             <div className='nav-user'>
@@ -33,7 +34,7 @@ class Nav extends Component {
                 <div>
                   Hello, {authedUserInfo.name}
                   <img
-                    className='authed-user-avatar'
+                    className='avatar-small'
                     src={authedUserInfo.avatarURL}
                   />
                 </div>
@@ -41,7 +42,7 @@ class Nav extends Component {
             </div>
           </li>
           <li className='pure-menu-item'>
-            <a className='pure-menu-link' href='#'>
+            <a href='' className='pure-menu-link'>
               Logout
             </a>
           </li>

@@ -11,4 +11,4 @@ class NewQuestion extends Component{
   }
 }
 
-export default conect()(NewQuestion)
+export default connect()(NewQuestion)

@@ -9,15 +9,15 @@ export function receiveUsers (users) {
   }
 }
 
-export function userAnswerQuestion (authedUser, question) {
+export function userAnswerQuestion ({ authedUser, qid }) {
   return {
     type: ANSWER_QUESTION,
     authedUser,
-    question
+    qid
   }
 }
 
-export function userAddQuestion (authedUser, question) {
+export function userAddQuestion ({authedUser, question}) {
   return {
     type: ADD_QUESTION,
     authedUser,
