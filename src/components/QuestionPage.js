@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
 import PercentageBar from './PercentageBar'
-import {getPercentage} from '../utils/helper'
 
 class QuestionPage extends Component {
   handleSubmit = (e, answer) => {
@@ -14,7 +13,6 @@ class QuestionPage extends Component {
       })
     )
   }
-
 
   render () {
     const { question } = this.props
@@ -104,6 +102,10 @@ class UnansweredQuestion extends Component {
 
 const AnsweredQuestion = ({ answered, optionOne, optionTwo }) => {
   const voteCounts = optionOne.votes.concat(optionTwo.votes).length
+  const optionOnePercent = (
+    (optionOne.votes.length / voteCounts) *
+    100
+  ).toFixed(1)
   const result = (
     <div className='question-summary'>
       <h3>Results:</h3>
@@ -112,9 +114,7 @@ const AnsweredQuestion = ({ answered, optionOne, optionTwo }) => {
           'question-result-voted'}`}
       >
         <span>{optionOne.text}</span>
-        <PercentageBar
-          percentage={getPercentage(optionOne.votes.length, voteCounts)}
-        />
+        <PercentageBar percentage={optionOnePercent} />
         {optionOne.votes.length} out of {voteCounts} votes
       </div>
       <div
@@ -122,9 +122,7 @@ const AnsweredQuestion = ({ answered, optionOne, optionTwo }) => {
           'question-result-voted'}`}
       >
         <span>{optionTwo.text}</span>
-        <PercentageBar
-          percentage={getPercentage(optionTwo.votes.length, voteCounts)}
-        />
+        <PercentageBar percentage={100 - optionOnePercent} />
         {optionTwo.votes.length} out of {voteCounts} votes
       </div>
     </div>
