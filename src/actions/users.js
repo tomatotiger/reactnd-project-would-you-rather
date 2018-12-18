@@ -1,6 +1,6 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS'
-export const ANSWER_QUESTION = 'ANSWER_QUESTION'
-export const ADD_QUESTION = 'ADD_QUESTION'
+export const USER_ANSWER_QUESTION = 'USER_ANSWER_QUESTION'
+export const USER_ADD_QUESTION = 'USER_ADD_QUESTION'
 
 export function receiveUsers (users) {
   return {
@@ -9,18 +9,18 @@ export function receiveUsers (users) {
   }
 }
 
-export function userAnswerQuestion ({ authedUser, qid }) {
+export function userAnswerQuestion ({ authedUser, qid, answer }) {
   return {
-    type: ANSWER_QUESTION,
+    type: USER_ANSWER_QUESTION,
     authedUser,
-    qid
+    qid,
+    answer
   }
 }
 
-export function userAddQuestion ({authedUser, question}) {
+export function userAddQuestion (question) {
   return {
-    type: ADD_QUESTION,
-    authedUser,
+    type: USER_ADD_QUESTION,
     question
   }
 }

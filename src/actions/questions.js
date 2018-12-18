@@ -20,13 +20,14 @@ function addQuestion (question) {
   }
 }
 
-export function handleAddQuestion (question) {
+export function handleAddQuestion ({ optionOneText, optionTwoText }) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
-    return saveQuestion({ question, author: authedUser }).then(
-      dispatch(addQuestion(question)),
-      dispatch(userAddQuestion(authedUser, question))
-    )
+    const question = { optionOneText, optionTwoText, author: authedUser }
+    return saveQuestion(question).then(savedQuestion => {
+      dispatch(addQuestion(savedQuestion))
+      dispatch(userAddQuestion(savedQuestion))
+    })
   }
 }
 

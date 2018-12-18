@@ -15,12 +15,12 @@ class Nav extends Component {
             </Link>
           </li>
           <li className='pure-menu-item'>
-            <Link to='new' className='pure-menu-link'>
+            <Link to='/new' className='pure-menu-link'>
               New Question
             </Link>
           </li>
           <li className='pure-menu-item'>
-            <Link to='leader-board' className='pure-menu-link'>
+            <Link to='/leader-board' className='pure-menu-link'>
               Leader Board
             </Link>
           </li>

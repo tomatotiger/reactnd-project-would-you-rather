@@ -14,29 +14,18 @@ export default function questions (state = {}, action) {
     case ADD_QUESTION:
       return {
         ...state,
-        [action.question.qid]: action.question
+        [action.question.id]: action.question
       }
     case ANSWER_QUESTION:
       const { answer, authedUser, qid } = action
-      if (answer === 'optionOne') {
+      if (['optionOne', 'optionTwo'].includes(answer)) {
         return {
           ...state,
           [qid]: {
             ...state[qid],
-            optionOne: {
-              ...state[qid].optionOne,
-              votes: state[qid].optionOne.votes.concat([authedUser])
-            }
-          }
-        }
-      } else if (answer === 'optionTwo') {
-        return {
-          ...state,
-          [qid]: {
-            ...state[qid],
-            optionTwo: {
-              ...state[qid].optionTwo,
-              votes: state[qid].optionTwo.votes.concat([authedUser])
+            [answer]: {
+              ...state[qid][answer],
+              votes: state[qid][answer].votes.concat([authedUser])
             }
           }
         }
