@@ -25,3 +25,7 @@ export function formatQuestion ({ optionOneText, optionTwoText, author }) {
     summary: `...${optionOneText}...`
   }
 }
+
+export const getPercentage = (n, t) => {
+  return Math.floor((n / t) * 100)
+}

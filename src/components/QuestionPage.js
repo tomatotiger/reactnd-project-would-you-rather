@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
 import PercentageBar from './PercentageBar'
+import {getPercentage} from '../utils/helper'
 
 class QuestionPage extends Component {
   handleSubmit = (e, answer) => {
@@ -13,6 +14,7 @@ class QuestionPage extends Component {
       })
     )
   }
+
 
   render () {
     const { question } = this.props
@@ -110,7 +112,9 @@ const AnsweredQuestion = ({ answered, optionOne, optionTwo }) => {
           'question-result-voted'}`}
       >
         <span>{optionOne.text}</span>
-        <PercentageBar percentage={5} />
+        <PercentageBar
+          percentage={getPercentage(optionOne.votes.length, voteCounts)}
+        />
         {optionOne.votes.length} out of {voteCounts} votes
       </div>
       <div
@@ -118,7 +122,9 @@ const AnsweredQuestion = ({ answered, optionOne, optionTwo }) => {
           'question-result-voted'}`}
       >
         <span>{optionTwo.text}</span>
-        <PercentageBar percentage={60} />
+        <PercentageBar
+          percentage={getPercentage(optionTwo.votes.length, voteCounts)}
+        />
         {optionTwo.votes.length} out of {voteCounts} votes
       </div>
     </div>
