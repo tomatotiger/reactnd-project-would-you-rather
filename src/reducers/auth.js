@@ -5,7 +5,7 @@ export default function auth (state = null, action) {
     case LOGIN:
       return action.id
     case LOGOUT:
-      return undefined
+      return null
     default:
       return state
   }
