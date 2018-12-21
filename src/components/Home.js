@@ -53,7 +53,7 @@ class Home extends Component {
 
 function mapStateToProps ({ authedUser, questions, users }) {
   const sortedQuestions = Object.keys(questions).sort(
-    (a, b) => questions[a].timestamp - questions[b].timestamp
+    (a, b) => questions[b].timestamp - questions[a].timestamp
   )
 
   return {
