@@ -1,4 +1,3 @@
-import { showLoading, hideLoading } from 'react-redux-loading'
 import { saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { userAnswerQuestion, userAddQuestion } from './users'
 

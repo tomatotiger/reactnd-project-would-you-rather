@@ -16,55 +16,73 @@ class App extends Component {
   }
 
   render () {
+    const { authedUser } = this.props
     return (
       <Router>
         <div>
-          <LoadingBar style={{ zIndex: '4', backgroundColor: 'grey' }} />
-          <div className='body'>
-            {this.props.loading === true ? null : (
-              <div>
-                <Nav />
-                <div className='container'>
-                  <Route path='/' exact component={Home} />
-                  <Route path='/question/:id' exact component={QuestionPage} />
-                  <Route path='/new' exact component={NewQuestion} />
-                  <Route path='/leader-board' exact component={LeaderBoard} />
-                  <Route path='/login' exact component={Login} />
-                </div>
-              </div>
-            )}
-          </div>
+          <Route path='/login' exact component={Login} />
+          <PrivateRoute
+            path='/'
+            exact
+            authedUser={authedUser}
+            component={Wrapper(Home)}
+          />
+          <PrivateRoute
+            path='/question/:id'
+            exact
+            authedUser={authedUser}
+            component={Wrapper(QuestionPage)}
+          />
+          <PrivateRoute
+            path='/new'
+            exact
+            authedUser={authedUser}
+            component={Wrapper(NewQuestion)}
+          />
+          <PrivateRoute
+            path='/leader-board'
+            exact
+            authedUser={authedUser}
+            component={Wrapper(LeaderBoard)}
+          />
         </div>
       </Router>
     )
   }
 }
 
-// TODO: add auth
-// function PrivateRoute ({ component: Component, ...rest }) {
-//   return (
-//     <Route
-//       {...rest}
-//       render={props =>
-//         props.isAuthenticated ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{
-//               pathname: '/login',
-//               state: { from: props.location }
-//             }}
-//           />
-//         )
-//       }
-//     />
-//   )
-// }
-
-function mapStateToProps ({ authedUser }) {
-  return {
-    loading: authedUser === null
-  }
+const PrivateRoute = ({ component: Component, authedUser, ...args }) => {
+  return (
+    <Route
+      {...args}
+      render={props =>
+        authedUser ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  )
 }
 
+// components that don't need to authed should hava loadingBar and Nav
+const Wrapper = Component => {
+  return (props) => (
+    <div className='body'>
+      <LoadingBar style={{ zIndex: '4', backgroundColor: 'grey' }} />
+      <Nav />
+      <div className='container'>
+        <Component {...props} />
+      </div>
+    </div>
+  )
+}
+
+const mapStateToProps = ({ authedUser }) => ({ authedUser })
 export default connect(mapStateToProps)(App)

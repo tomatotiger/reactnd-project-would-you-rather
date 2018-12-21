@@ -25,7 +25,7 @@ class QuestionPage extends Component {
         <h5 className='question-title'>{author.name} asks: </h5>
         <div className='question-box'>
           <div className='question-box-avatar'>
-            <img src={author.avatarURL} className='avatar-big' />
+            <img src={author.avatarURL} className='avatar-big' alt={author.name} />
           </div>
           {answered === null ? (
             <UnansweredQuestion

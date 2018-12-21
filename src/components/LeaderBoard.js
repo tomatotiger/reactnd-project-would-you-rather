@@ -6,9 +6,9 @@ class LeaderBoard extends Component {
     return (
       <ul>
         {this.props.topThree.map(u => (
-          <li>
+          <li key={u.id}>
             <div>
-              <img src={u.avatarURL} />
+              <img src={u.avatarURL} alt={u.name} />
               {u.name}
               Answered questions {u.answered}
               Created questions {u.created}
@@ -35,7 +35,6 @@ function mapStateToProps ({ users }) {
   const topThreeIds = Object.keys(scoredUsers)
     .sort((a, b) => scoredUsers[b].score - scoredUsers[a].score)
     .slice(0, 4)
-  console.log(topThreeIds)
   return {
     topThree: topThreeIds.map(id => scoredUsers[id])
   }

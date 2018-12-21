@@ -30,6 +30,7 @@ export default function questions (state = {}, action) {
           }
         }
       }
+      break
     default:
       return state
   }

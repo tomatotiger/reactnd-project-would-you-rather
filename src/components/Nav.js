@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { PacmanLoader } from 'react-spinners'
+import { Link, withRouter } from 'react-router-dom'
+import { logout } from '../actions/auth'
 
 class Nav extends Component {
   render () {
-    const { authedUserInfo } = this.props
+    const { authedUserInfo, logout } = this.props
     return (
       <div className='home-menu pure-menu pure-menu-horizontal pure-menu-fixed'>
         <ul className='pure-menu-list'>
@@ -26,25 +26,22 @@ class Nav extends Component {
           </li>
           <li className='pure-menu-item'>
             <div className='nav-user'>
-              {authedUserInfo === undefined ? (
-                <div className='sweet-loading'>
-                  <PacmanLoader color={'#2fbea4'} loading={true} size={13} />
-                </div>
+              {authedUserInfo === null ? (
+                <div className='loader' />
               ) : (
                 <div>
                   Hello, {authedUserInfo.name}
                   <img
                     className='avatar-small'
                     src={authedUserInfo.avatarURL}
+                    alt={authedUserInfo.name}
                   />
                 </div>
               )}
             </div>
           </li>
           <li className='pure-menu-item'>
-            <a href='' className='pure-menu-link'>
-              Logout
-            </a>
+            <button className='pure-menu-link' onClick={logout}>Logout</button>
           </li>
         </ul>
       </div>
@@ -52,8 +49,22 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, users }) {
-  return { authedUserInfo: users[authedUser] }
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {
+      dispatch(logout())
+    }
+  }
 }
 
-export default connect(mapStateToProps)(Nav)
+const mapStateToProps = ({ authedUser, users }) => {
+  const user = users[authedUser]
+  return { authedUserInfo: user || null }
+}
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Nav)
+)

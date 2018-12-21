@@ -62,4 +62,5 @@ class NewQuestion extends Component {
   }
 }
 
+// TODO: move submit function to mapdispatchtoprops
 export default connect()(NewQuestion)

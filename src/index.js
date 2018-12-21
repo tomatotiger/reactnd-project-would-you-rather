@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'purecss/build/pure.css'
 import 'purecss/build/grids-core.css'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import './app.css'
 

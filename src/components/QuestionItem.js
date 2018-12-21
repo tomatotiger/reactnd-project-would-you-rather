@@ -9,7 +9,7 @@ class QuestionItem extends Component {
       <div className='question-list-item'>
         <h5 className='question-title'>{author.name} asks: </h5>
         <div>
-          <img src={author.avatarURL} className='avatar-middle' />
+          <img src={author.avatarURL} className='avatar-middle' alt={author.name} />
           <div className='question-summary'>
             <h5>Would you rather</h5>
             <span>{summary}</span>
