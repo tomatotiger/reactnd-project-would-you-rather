@@ -141,7 +141,7 @@ function mapStateToProps ({ authedUser, questions, users }, props) {
         ...question,
         author: users[question.author],
         answered: Object.keys(users[authedUser].answers).includes(id)
-          ? users[question.author].answers[id]
+          ? users[authedUser].answers[id]
           : null
       }
       : null
