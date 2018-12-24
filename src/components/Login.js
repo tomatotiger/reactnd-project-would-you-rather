@@ -13,15 +13,22 @@ class Login extends Component {
 
   login = (onLogin, uid) => {
     onLogin(uid)
-    this.setState({redirectToReferrer: true})
+    this.setState({ redirectToReferrer: true })
   }
 
   render () {
-    const { defaultOption, users, onLogin } = this.props
+    const { users, onLogin } = this.props
     const { uid, redirectToReferrer } = this.state
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
 
-    if (redirectToReferrer) return <Redirect to={from} />;
+    if (redirectToReferrer) return <Redirect to={from} />
+    if (users === null) {
+      return 'Loading...'
+    }
+    if (users.length === 0) {
+      return 'No users for playing. Please Create some users first.'
+    }
+    const defaultOption = users[0].id
     return (
       <div>
         Welcome to the Would You Rather App! Please sign in to continue
@@ -34,7 +41,9 @@ class Login extends Component {
             </option>
           ))}
         </select>
-        <button onClick={() => this.login(onLogin, uid || defaultOption)}>Sign in</button>
+        <button onClick={() => this.login(onLogin, uid || defaultOption)}>
+          Sign in
+        </button>
       </div>
     )
   }
@@ -42,8 +51,7 @@ class Login extends Component {
 
 function mapStateToProps ({ users }) {
   return {
-    users,
-    defaultOption: users ? Object.keys(users)[0] : null
+    users: users === null ? null : Object.values(users)
   }
 }
 

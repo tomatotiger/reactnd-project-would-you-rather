@@ -33,7 +33,14 @@ let users = {
       "6ni6ok3ym7mf1p33lnez": 'optionTwo'
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
-  }
+  },
+  tomato: {
+    id: 'tomato',
+    name: 'Tomato',
+    avatarURL: 'https://www.life360.com/wp-content/Cimy_User_Extra_Fields/govind/avatar/blank-avatar.png',
+    answers: {},
+    questions: []
+  },
 }
 
 let questions = {
