@@ -43,7 +43,7 @@ class Login extends Component {
         Sign in
         <select value={uid || defaultOption} onChange={this.onChange}>
           {Object.values(users).map(u => (
-            <option value={u.id} key={u.id}>
+            <option value={u.id} key={u.id} style={{backgroundImage: `url(images/avatars/${u.avatarURL})`}}>
               {u.name}
             </option>
           ))}

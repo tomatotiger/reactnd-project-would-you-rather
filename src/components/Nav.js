@@ -34,7 +34,7 @@ const Nav = props => {
                 Hello, {authedUserInfo.name}
                 <img
                   className='avatar-small'
-                  src={authedUserInfo.avatarURL}
+                  src={`images/avatars/${authedUserInfo.avatarURL}`}
                   alt={authedUserInfo.name}
                 />
               </div>

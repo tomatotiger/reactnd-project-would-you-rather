@@ -8,7 +8,7 @@ const LeaderBoard = props => (
       {props.topThree.map(u => (
         <li key={u.id}>
           <div>
-            <img src={u.avatarURL} alt={u.name} />
+            <img src={`images/avatars/${u.avatarURL}`} alt={u.name} />
             {u.name}
             Answered questions {u.answered}
             Created questions {u.created}

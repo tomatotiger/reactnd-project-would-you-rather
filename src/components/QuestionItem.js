@@ -12,7 +12,7 @@ const QuestionItem = props => {
       <h5 className='question-title'>{author.name} asks: </h5>
       <div>
         <img
-          src={author.avatarURL}
+          src={`images/avatars/${author.avatarURL}`}
           className='avatar-middle'
           alt={author.name}
         />

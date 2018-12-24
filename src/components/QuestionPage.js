@@ -17,7 +17,7 @@ const QuestionPage = props => {
       <div className='question-box'>
         <div className='question-box-avatar'>
           <img
-            src={author.avatarURL}
+            src={`/images/avatars/${author.avatarURL}`}
             className='avatar-big'
             alt={author.name}
           />
