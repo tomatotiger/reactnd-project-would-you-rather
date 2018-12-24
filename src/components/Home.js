@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
 import QuestionItem from './QuestionItem'
 
 class Home extends Component {
   state = {
     questionState: 'unanswered'
+  }
+
+  static propTypes = {
+    unanswered: PropTypes.array.isRequired,
+    answered: PropTypes.array.isRequired
   }
 
   handleClickTab = e => {

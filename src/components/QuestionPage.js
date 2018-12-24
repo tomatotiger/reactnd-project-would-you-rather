@@ -1,45 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAnswerQuestion } from '../actions/questions'
-import PercentageBar from './PercentageBar'
+import PropTypes from 'prop-types'
 
-class QuestionPage extends Component {
-  render () {
-    const { question, onSubmit } = this.props
-    if (question === null) {
-      return <p>This Question Doesn't Exist.</p>
-    }
-    const { id, author, optionOne, optionTwo, answered } = question
-    return (
-      <div className='content'>
-        <h5 className='question-title'>{author.name} asks: </h5>
-        <div className='question-box'>
-          <div className='question-box-avatar'>
-            <img
-              src={author.avatarURL}
-              className='avatar-big'
-              alt={author.name}
-            />
-          </div>
-          {answered === null ? (
-            <UnansweredQuestion
-              answered={answered}
-              optionOne={optionOne.text}
-              optionTwo={optionTwo.text}
-              onSubmit={onSubmit}
-              qid={id}
-            />
-          ) : (
-            <AnsweredQuestion
-              answered={answered}
-              optionOne={optionOne}
-              optionTwo={optionTwo}
-            />
-          )}
-        </div>
-      </div>
-    )
+import PercentageBar from './PercentageBar'
+import { handleAnswerQuestion } from '../actions/questions'
+
+const QuestionPage = props => {
+  const { question, onSubmit } = props
+  if (question === null) {
+    return <p>This Question Doesn't Exist.</p>
   }
+  const { id, author, optionOne, optionTwo, answered } = question
+  return (
+    <div className='content'>
+      <h5 className='question-title'>{author.name} asks: </h5>
+      <div className='question-box'>
+        <div className='question-box-avatar'>
+          <img
+            src={author.avatarURL}
+            className='avatar-big'
+            alt={author.name}
+          />
+        </div>
+        {answered === null ? (
+          <UnansweredQuestion
+            answered={answered}
+            optionOne={optionOne.text}
+            optionTwo={optionTwo.text}
+            onSubmit={onSubmit}
+            qid={id}
+          />
+        ) : (
+          <AnsweredQuestion
+            answered={answered}
+            optionOne={optionOne}
+            optionTwo={optionTwo}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
+
+QuestionPage.propTypes = {
+  question: PropTypes.object,
+  onSubmit: PropTypes.func.isRequired
 }
 
 class UnansweredQuestion extends Component {
@@ -98,7 +103,7 @@ class UnansweredQuestion extends Component {
         <button
           className='pure-button submit-button'
           onClick={this.handleSubmit}
-          loading={this.state.loading}
+          disabled={this.state.loading}
         >
           {this.state.loading ? 'Submitting...' : 'Submit'}
         </button>
@@ -107,12 +112,17 @@ class UnansweredQuestion extends Component {
   }
 }
 
+UnansweredQuestion.propTypes = {
+  answered: PropTypes.string,
+  optionOne: PropTypes.string.isRequired,
+  optionTwo: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  qid: PropTypes.string.isRequired
+}
+
 const AnsweredQuestion = ({ answered, optionOne, optionTwo }) => {
   const voteCounts = optionOne.votes.concat(optionTwo.votes).length
-  const optionOnePercent = (
-    (optionOne.votes.length / voteCounts) *
-    100
-  ).toFixed(1)
+  const optionOnePercent = optionOne.votes.length / voteCounts * 100
   const result = (
     <div className='question-summary'>
       <h3>Results:</h3>
@@ -135,6 +145,12 @@ const AnsweredQuestion = ({ answered, optionOne, optionTwo }) => {
     </div>
   )
   return result
+}
+
+AnsweredQuestion.propTypes = {
+  answered: PropTypes.string,
+  optionOne: PropTypes.object.isRequired,
+  optionTwo: PropTypes.object.isRequired
 }
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {

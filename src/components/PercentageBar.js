@@ -1,14 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const PercentageBar = props => (
-  <div className='percentage-bar'>
-    <div
-      className='percentage-bar-progress'
-      style={{ width: props.percentage + '%' }}
-    >
-      {props.percentage}%
+const PercentageBar = props => {
+  const percentage = props.percentage.toFixed(1) + '%'
+  console.log(percentage)
+  return (
+    <div className='percentage-bar'>
+      <div className='percentage-bar-progress' style={{ width: percentage }}>
+        {percentage}
+      </div>
     </div>
-  </div>
-)
+  )
+}
+
+PercentageBar.propTypes = {
+  percentage: PropTypes.number.isRequired
+}
 
 export default PercentageBar

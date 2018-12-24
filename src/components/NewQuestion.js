@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
   state = {
@@ -9,6 +11,10 @@ class NewQuestion extends Component {
     optionOneText: '',
     optionTwoText: '',
     toHome: false
+  }
+
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired
   }
 
   inputOnChange = e => {

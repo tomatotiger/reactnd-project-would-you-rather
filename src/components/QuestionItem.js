@@ -1,32 +1,35 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-class QuestionItem extends Component {
-  render () {
-    const { question } = this.props
-    if (question === null) return "This Question Doesn't Exist."
-    const { qid, author, summary } = question
-    return (
-      <div className='question-list-item'>
-        <h5 className='question-title'>{author.name} asks: </h5>
-        <div>
-          <img
-            src={author.avatarURL}
-            className='avatar-middle'
-            alt={author.name}
-          />
-          <div className='question-summary'>
-            <h5>Would you rather</h5>
-            <span>{summary}</span>
-            <Link to={`/question/${qid}`} className='question-item-link'>
-              View Poll
-            </Link>
-          </div>
+const QuestionItem = props => {
+  const { question } = props
+  if (question === null) return "This Question Doesn't Exist."
+  const { qid, author, summary } = question
+  return (
+    <div className='question-list-item'>
+      <h5 className='question-title'>{author.name} asks: </h5>
+      <div>
+        <img
+          src={author.avatarURL}
+          className='avatar-middle'
+          alt={author.name}
+        />
+        <div className='question-summary'>
+          <h5>Would you rather</h5>
+          <span>{summary}</span>
+          <Link to={`/question/${qid}`} className='question-item-link'>
+            View Poll
+          </Link>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
+
+QuestionItem.propTypes = {
+  question: PropTypes.object
 }
 
 const mapStateToProps = ({ questions, users }, { qid }) => {
