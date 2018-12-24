@@ -42,7 +42,7 @@ class Home extends Component {
         <ul className='question-list'>
           {this.props[this.state.questionState].map(q => (
             <li key={q}>
-              <QuestionItem id={q} />
+              <QuestionItem qid={q} />
             </li>
           ))}
         </ul>

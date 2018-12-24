@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 
 class QuestionItem extends Component {
   render () {
-    const { id, author, summary } = this.props
+    const { qid, author, summary } = this.props
     return (
       <div className='question-list-item'>
         <h5 className='question-title'>{author.name} asks: </h5>
@@ -13,7 +13,7 @@ class QuestionItem extends Component {
           <div className='question-summary'>
             <h5>Would you rather</h5>
             <span>{summary}</span>
-            <Link to={`/question/${id}`} className='question-item-link'>
+            <Link to={`/question/${qid}`} className='question-item-link'>
               View Poll
             </Link>
           </div>
@@ -23,10 +23,10 @@ class QuestionItem extends Component {
   }
 }
 
-function mapStateToProps ({ questions, users }, { id }) {
-  const question = questions[id]
+const mapStateToProps = ({ questions, users }, { qid }) => {
+  const question = questions[qid]
   return {
-    id,
+    qid,
     question,
     author: users[question.author],
     summary: `... ${question.optionOne.text.substring(0, 25)} ...`

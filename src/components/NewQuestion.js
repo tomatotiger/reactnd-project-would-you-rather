@@ -1,29 +1,41 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {handleAddQuestion} from '../actions/questions'
-import {Redirect} from 'react-router-dom'
+import { handleAddQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
+    loading: false,
     optionOneText: '',
     optionTwoText: '',
     toHome: false
   }
 
   inputOnChange = e => {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   submitAvailable = () => {
-    return this.state.optionOneText.trim() === '' || this.state.optionTwoText.trim() === ''
+    return (
+      this.state.optionOneText.trim() === '' ||
+      this.state.optionTwoText.trim() === '' ||
+      this.state.loading === true
+    )
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    const {optionOneText, optionTwoText} = this.state
-    const {dispatch}= this.props
-    dispatch(handleAddQuestion({optionOneText, optionTwoText}))
-    this.setState({toHome: true})
+    this.setState({ loading: true })
+    const { optionOneText, optionTwoText } = this.state
+    const { onSubmit } = this.props
+
+    onSubmit(optionOneText, optionTwoText)
+      .then(() => this.setState({ toHome: true }))
+      .catch(() => {
+        console.warn('Error in handleAddQuestion: ', e)
+        alert('There was an error creating the question. Please try again.')
+        this.setState({ loading: false })
+      })
   }
 
   render () {
@@ -54,7 +66,7 @@ class NewQuestion extends Component {
             onChange={this.inputOnChange}
           />
           <button type='submit' disabled={this.submitAvailable()}>
-            Submit
+            {this.state.loading ? 'Submitting...' : 'Submit'}
           </button>
         </form>
       </div>
@@ -62,5 +74,14 @@ class NewQuestion extends Component {
   }
 }
 
-// TODO: move submit function to mapdispatchtoprops
-export default connect()(NewQuestion)
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmit: (optionOneText, optionTwoText) => {
+      return dispatch(handleAddQuestion({ optionOneText, optionTwoText }))
+    }
+  }
+}
+export default connect(
+  null,
+  mapDispatchToProps
+)(NewQuestion)

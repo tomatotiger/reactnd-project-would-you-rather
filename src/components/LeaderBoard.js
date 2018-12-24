@@ -36,7 +36,7 @@ function mapStateToProps ({ users }) {
     .sort((a, b) => scoredUsers[b].score - scoredUsers[a].score)
     .slice(0, 4)
   return {
-    topThree: topThreeIds.map(id => scoredUsers[id])
+    topThree: topThreeIds.map(uid => scoredUsers[uid])
   }
 }
 

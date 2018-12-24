@@ -20,6 +20,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <LoadingBar style={{ zIndex: '4', backgroundColor: 'grey' }} />
           <Route path='/login' exact component={Login} />
           <PrivateRoute
             path='/'
@@ -28,7 +29,7 @@ class App extends Component {
             component={Wrapper(Home)}
           />
           <PrivateRoute
-            path='/question/:id'
+            path='/question/:qid'
             exact
             authedUser={authedUser}
             component={Wrapper(QuestionPage)}
@@ -75,7 +76,6 @@ const PrivateRoute = ({ component: Component, authedUser, ...args }) => {
 const Wrapper = Component => {
   return (props) => (
     <div className='body'>
-      <LoadingBar style={{ zIndex: '4', backgroundColor: 'grey' }} />
       <Nav />
       <div className='container'>
         <Component {...props} />

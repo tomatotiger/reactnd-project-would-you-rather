@@ -18,19 +18,16 @@ export default function questions (state = {}, action) {
       }
     case ANSWER_QUESTION:
       const { answer, authedUser, qid } = action
-      if (['optionOne', 'optionTwo'].includes(answer)) {
-        return {
-          ...state,
-          [qid]: {
-            ...state[qid],
-            [answer]: {
-              ...state[qid][answer],
-              votes: state[qid][answer].votes.concat([authedUser])
-            }
+      return {
+        ...state,
+        [qid]: {
+          ...state[qid],
+          [answer]: {
+            ...state[qid][answer],
+            votes: state[qid][answer].votes.concat([authedUser])
           }
         }
       }
-      break
     default:
       return state
   }

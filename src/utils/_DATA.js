@@ -149,7 +149,7 @@ export function _saveQuestion (question) {
       }
 
       res(formattedQuestion)
-    }, 1000)
+    }, 2000)
   })
 }
 

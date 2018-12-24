@@ -42,13 +42,9 @@ function answerQuestion ({ authedUser, qid, answer }) {
 export function handleAnswerQuestion ({ qid, answer }) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
-    dispatch(answerQuestion({ authedUser, qid, answer }))
-    dispatch(userAnswerQuestion({ authedUser, qid, answer }))
-
-    return saveQuestionAnswer({ authedUser, qid, answer }).catch(e => {
-      console.warn('Error in handleAnswerQuestion: ', e)
-      // TODO: recovery UI to unanswerd dispatch()
-      alert('There was an error answering the question. Please try again.')
+    return saveQuestionAnswer({ authedUser, qid, answer }).then(() => {
+      dispatch(answerQuestion({ authedUser, qid, answer }))
+      dispatch(userAnswerQuestion({ authedUser, qid, answer }))
     })
   }
 }

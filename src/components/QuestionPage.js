@@ -4,35 +4,30 @@ import { handleAnswerQuestion } from '../actions/questions'
 import PercentageBar from './PercentageBar'
 
 class QuestionPage extends Component {
-  handleSubmit = (e, answer) => {
-    const { dispatch, question } = this.props
-    dispatch(
-      handleAnswerQuestion({
-        qid: question.id,
-        answer: answer
-      })
-    )
-  }
-
   render () {
-    const { question } = this.props
+    const { question, onSubmit } = this.props
     if (question === null) {
       return <p>This Question Doesn't Exist.</p>
     }
-    const { author, optionOne, optionTwo, answered } = question
+    const { id, author, optionOne, optionTwo, answered } = question
     return (
       <div className='content'>
         <h5 className='question-title'>{author.name} asks: </h5>
         <div className='question-box'>
           <div className='question-box-avatar'>
-            <img src={author.avatarURL} className='avatar-big' alt={author.name} />
+            <img
+              src={author.avatarURL}
+              className='avatar-big'
+              alt={author.name}
+            />
           </div>
           {answered === null ? (
             <UnansweredQuestion
               answered={answered}
               optionOne={optionOne.text}
               optionTwo={optionTwo.text}
-              handleSubmit={this.handleSubmit}
+              onSubmit={onSubmit}
+              qid={id}
             />
           ) : (
             <AnsweredQuestion
@@ -49,7 +44,18 @@ class QuestionPage extends Component {
 
 class UnansweredQuestion extends Component {
   state = {
-    answer: 'optionOne'
+    answer: 'optionOne',
+    loading: false
+  }
+
+  handleSubmit = e => {
+    this.setState({ loading: true })
+    const { qid, onSubmit } = this.props
+    onSubmit(this.state.answer, qid).catch(() => {
+      console.warn('Error in handleAnswerQuestion: ', e)
+      alert('There was an error answering the question. Please try again.')
+      this.setState({ loading: false })
+    })
   }
 
   handleRadioChange = e => {
@@ -62,7 +68,7 @@ class UnansweredQuestion extends Component {
 
   render () {
     const answer = this.state.answer
-    const { optionOne, optionTwo, handleSubmit } = this.props
+    const { optionOne, optionTwo } = this.props
     return (
       <div className='question-summary'>
         <h3>Would you rather ...</h3>
@@ -91,9 +97,10 @@ class UnansweredQuestion extends Component {
         </label>
         <button
           className='pure-button submit-button'
-          onClick={e => handleSubmit(e, answer)}
+          onClick={this.handleSubmit}
+          loading={this.state.loading}
         >
-          Submit
+          {this.state.loading ? 'Submitting...' : 'Submit'}
         </button>
       </div>
     )
@@ -130,9 +137,9 @@ const AnsweredQuestion = ({ answered, optionOne, optionTwo }) => {
   return result
 }
 
-function mapStateToProps ({ authedUser, questions, users }, props) {
-  const { id } = props.match.params
-  const question = questions[id]
+const mapStateToProps = ({ authedUser, questions, users }, props) => {
+  const { qid } = props.match.params
+  const question = questions[qid]
 
   return {
     authedUser,
@@ -140,12 +147,28 @@ function mapStateToProps ({ authedUser, questions, users }, props) {
       ? {
         ...question,
         author: users[question.author],
-        answered: Object.keys(users[authedUser].answers).includes(id)
-          ? users[authedUser].answers[id]
+        answered: Object.keys(users[authedUser].answers).includes(qid)
+          ? users[authedUser].answers[qid]
           : null
       }
       : null
   }
 }
 
-export default connect(mapStateToProps)(QuestionPage)
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmit: (answer, qid) => {
+      return dispatch(
+        handleAnswerQuestion({
+          qid,
+          answer
+        })
+      )
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuestionPage)

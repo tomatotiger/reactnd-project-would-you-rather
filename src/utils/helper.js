@@ -21,7 +21,6 @@ export function formatQuestion ({ optionOneText, optionTwoText, author }) {
     optionTwo: {
       votes: [],
       text: optionTwoText
-    },
-    summary: `...${optionOneText}...`
+    }
   }
 }

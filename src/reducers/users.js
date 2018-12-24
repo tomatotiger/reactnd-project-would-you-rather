@@ -1,4 +1,8 @@
-import { RECEIVE_USERS, USER_ANSWER_QUESTION, USER_ADD_QUESTION } from '../actions/users'
+import {
+  RECEIVE_USERS,
+  USER_ANSWER_QUESTION,
+  USER_ADD_QUESTION
+} from '../actions/users'
 
 export default function users (state = {}, action) {
   switch (action.type) {
@@ -14,10 +18,7 @@ export default function users (state = {}, action) {
         ...state,
         [authedUser]: {
           ...state[authedUser],
-          answers: {
-            ...state[authedUser].answers,
-            [qid]: answer
-          }
+          answers: { ...state[authedUser].answers, [qid]: answer }
         }
       }
 
