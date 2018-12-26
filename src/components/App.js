@@ -19,7 +19,7 @@ class App extends Component {
     const { authedUser } = this.props
     return (
       <Router>
-        <div>
+        <div className='body'>
           <LoadingBar style={{ zIndex: '4', backgroundColor: 'grey' }} />
           <Route path='/login' exact component={Login} />
           <PrivateRoute

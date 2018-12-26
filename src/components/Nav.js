@@ -34,7 +34,7 @@ const Nav = props => {
                 Hello, {authedUserInfo.name}
                 <img
                   className='avatar-small'
-                  src={`images/avatars/${authedUserInfo.avatarURL}`}
+                  src={`/images/avatars/${authedUserInfo.avatarURL}`}
                   alt={authedUserInfo.name}
                 />
               </div>
@@ -42,7 +42,7 @@ const Nav = props => {
           </div>
         </li>
         <li className='pure-menu-item'>
-          <button className='pure-menu-link' onClick={onLogout}>
+          <button className='logout-button' onClick={onLogout}>
             Logout
           </button>
         </li>

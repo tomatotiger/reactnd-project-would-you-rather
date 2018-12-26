@@ -49,31 +49,37 @@ class NewQuestion extends Component {
       return <Redirect to='/' />
     }
     return (
-      <div>
-        <h2>Create New Question</h2>
-        <span>Complete the question:</span>
-        <h4>Qould you rather ...</h4>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            name='optionOneText'
-            maxLength={55}
-            placeholder='Enter Option One Text Here'
-            value={this.state.optionOneText}
-            onChange={this.inputOnChange}
-          />
-          OR
-          <input
-            type='text'
-            name='optionTwoText'
-            maxLength={55}
-            placeholder='Enter Option Two Text Here'
-            value={this.state.optionTwoText}
-            onChange={this.inputOnChange}
-          />
-          <button type='submit' disabled={this.submitAvailable()}>
-            {this.state.loading ? 'Submitting...' : 'Submit'}
-          </button>
+      <div className='content new-question'>
+        <h3 className='title'>Create New Question</h3>
+        <p>Complete the question:</p>
+        <h5>Qould you rather ...</h5>
+        <form onSubmit={this.handleSubmit} className='pure-form pure-form-stacked'>
+          <div className='new-question-form'>
+            <input
+              type='text'
+              name='optionOneText'
+              maxLength={55}
+              placeholder='Enter Option One Text Here'
+              value={this.state.optionOneText}
+              onChange={this.inputOnChange}
+            />
+            <h3>OR</h3>
+            <input
+              type='text'
+              name='optionTwoText'
+              maxLength={55}
+              placeholder='Enter Option Two Text Here'
+              value={this.state.optionTwoText}
+              onChange={this.inputOnChange}
+            />
+            <button
+              type='submit'
+              disabled={this.submitAvailable()}
+              className='pure-button submit-button'
+            >
+              {this.state.loading ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
         </form>
       </div>
     )

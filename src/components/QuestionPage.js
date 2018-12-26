@@ -13,7 +13,7 @@ const QuestionPage = props => {
   const { id, author, optionOne, optionTwo, answered } = question
   return (
     <div className='content'>
-      <h5 className='question-title'>{author.name} asks: </h5>
+      <h5 className='title'>{author.name} asks: </h5>
       <div className='question-box'>
         <div className='question-box-avatar'>
           <img

@@ -9,10 +9,10 @@ const QuestionItem = props => {
   const { qid, author, summary } = question
   return (
     <div className='question-list-item'>
-      <h5 className='question-title'>{author.name} asks: </h5>
+      <h5 className='title'>{author.name} asks: </h5>
       <div>
         <img
-          src={`images/avatars/${author.avatarURL}`}
+          src={`/images/avatars/${author.avatarURL}`}
           className='avatar-middle'
           alt={author.name}
         />

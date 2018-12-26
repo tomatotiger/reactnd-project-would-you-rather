@@ -37,32 +37,47 @@ class Login extends Component {
     }
     const defaultOption = users[0].id
     return (
-      <div>
-        Welcome to the Would You Rather App! Please sign in to continue
-        <img src='' alt='Would You... ' />
-        Sign in
-        <select value={uid || defaultOption} onChange={this.onChange}>
-          {Object.values(users).map(u => (
-            <option value={u.id} key={u.id} style={{backgroundImage: `url(images/avatars/${u.avatarURL})`}}>
-              {u.name}
-            </option>
-          ))}
-        </select>
-        <button onClick={() => this.login(onLogin, uid || defaultOption)}>
-          Sign in
-        </button>
+      <div className='login-box pure-form pure-form-stacked'>
+        <div className='title'>
+          <h5>Welcome to the Would You Rather App!</h5>
+          <p>Please sign in to continue</p>
+        </div>
+        <div className='login-content'>
+          <img src='/images/fun.png' alt="Would You..." />
+          <h3>Sign in</h3>
+          <select value={uid || defaultOption} onChange={this.onChange}>
+            {Object.values(users).map(u => (
+              <option
+                value={u.id}
+                key={u.id}
+                className='users-select'
+                style={{
+                  backgroundImage: `url(/images/avatars/${u.avatarURL})`
+                }}
+              >
+                {u.name}
+              </option>
+            ))}
+          </select>
+          <button
+            className='pure-button'
+            onClick={() => this.login(onLogin, uid || defaultOption)}
+          >
+            Sign in
+          </button>
+        </div>
       </div>
     )
   }
 }
 
-function mapStateToProps ({ users }) {
+const mapStateToProps = ({ users }) => {
   return {
     users: users === null ? null : Object.values(users)
   }
 }
 
-function mapDispatchToProps (dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     onLogin: uid => {
       dispatch(login(uid))
