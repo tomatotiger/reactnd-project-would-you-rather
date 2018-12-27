@@ -33,8 +33,17 @@ p {
   line-height: 25px;
 }
 
-.login-box img {
+.login-icon {
   margin: 10px auto;
+  color: #8fd8e6;
+  font-size: 120px;
+  transform: rotate(-45deg);
+  -webkit-animation: chose 2s steps(1, start) infinite;
+  animation: chose 2s steps(1, start) infinite;
+  margin-bottom: 20px;
+}
+@keyframes chose {
+  50% {transform: rotate(45deg);}
 }
 
 .login-box h3 {

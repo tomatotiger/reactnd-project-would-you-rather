@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import {FaHandPointUp} from 'react-icons/fa/index'
 
 import { login } from '../actions/auth'
 
@@ -43,7 +44,7 @@ class Login extends Component {
           <p>Please sign in to continue</p>
         </div>
         <div className='login-content'>
-          <img src='/images/fun.png' alt="Would You..." />
+          <FaHandPointUp className='login-icon' />
           <h3>Sign in</h3>
           <select value={uid || defaultOption} onChange={this.onChange}>
             {Object.values(users).map(u => (
