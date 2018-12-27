@@ -14,13 +14,13 @@ This project is bootstrapped with [Create React App](https://github.com/facebook
 Core ingredients: 
 - [ES6](http://es6-features.org/#Constants): Written in ES6
 - [react-router-dom](react-router): Configure routers
-- [redux-thunk](https://github.com/reduxjs/redux-thunk): Check the type of props . 
-- [purecss](https://purecss.io/): Help to layout page and simple css for inputs.
+- [redux-thunk](https://github.com/reduxjs/redux-thunk): A middleware to handle async actions
+- [purecss](https://purecss.io/): Help to layout page and simple css for inputs
 
 and friends:
-- [prop-types](https://github.com/facebook/prop-types): Check the type of props . 
-- [react-redux-loading](https://www.npmjs.com/package/react-redux-loading-bar): Show a loading bar when reqesting data.
-- [react-icons](https://react-icons.netlify.com/#/): Display icons.
+- [prop-types](https://github.com/facebook/prop-types): Check the type of props
+- [react-redux-loading](https://www.npmjs.com/package/react-redux-loading-bar): Show a loading bar when reqesting data
+- [react-icons](https://react-icons.netlify.com/#/): Display icons
 
 
 ## Quickstart
