@@ -43,7 +43,9 @@ p {
   margin-bottom: 20px;
 }
 @keyframes chose {
-  50% {transform: rotate(45deg);}
+  50% {
+    transform: rotate(45deg);
+  }
 }
 
 .login-box h3 {
@@ -362,34 +364,34 @@ p {
   border-left: 2px solid #f3f3f3;
   border-right: 2px solid #f3f3f3;
 }
-.leader-board-info hr{
+.leader-board-info hr {
   width: inherit;
   border: none;
   border-top: 1px solid #f3f3f3;
-  color:white;
+  color: white;
   display: flex;
   margin: 30px 0 3px 0;
 }
-.leader-board-info h4{
+.leader-board-info h4 {
   margin-bottom: 10px;
 }
-.score-type{
+.score-type {
   width: 120px;
   float: left;
-  font-size:12px;
+  font-size: 12px;
 }
-.score-count{
+.score-count {
   width: 10px;
   float: right;
-  font-size:12px;
+  font-size: 12px;
 }
-.score-box{
+.score-box {
   margin: 10px 10px 10px 0;
   border: 1px solid #dfdfdf;
   border-radius: 3px;
   text-align: center;
 }
-.score-box h5{
+.score-box h5 {
   padding: 3px 10px;
   text-align: center;
 }
@@ -402,9 +404,15 @@ p {
   padding: 8px 13px;
   font-weight: bold;
 }
-.top1{color: #d5b64d}
-.top2{color: #2fbea4}
-.top3{color: #6a6a6a}
+.top1 {
+  color: #d5b64d;
+}
+.top2 {
+  color: #2fbea4;
+}
+.top3 {
+  color: #6a6a6a;
+}
 .triangle {
   position: absolute;
   width: 0;
@@ -443,4 +451,19 @@ p {
 .puru-u-51-1,
 .puru-u-52-2 {
   width: 100%;
+}
+
+/* footer */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: white;
+  text-align: center;
+}
+.footer a{
+  text-decoration: none;
+  color: #2fbea4;
 }

@@ -19,7 +19,7 @@ class App extends Component {
     const { authedUser } = this.props
     return (
       <Router>
-        <div className='body'>
+        <div>
           <LoadingBar style={{ zIndex: '4', backgroundColor: 'grey' }} />
           <Route path='/login' exact component={Login} />
           <PrivateRoute
@@ -74,11 +74,18 @@ const PrivateRoute = ({ component: Component, authedUser, ...args }) => {
 
 // components that don't need to authed should hava loadingBar and Nav
 const Wrapper = Component => {
-  return (props) => (
+  return props => (
     <div className='body'>
       <Nav />
       <div className='container'>
         <Component {...props} />
+      </div>
+      <div className='footer'>
+        <p>
+          designed by
+          <a href='https://www.flaticon.com/authors/freepik'>Freepik</a> from
+          <a href='https://www.flaticon.com/'>Flaticon</a>
+        </p>
       </div>
     </div>
   )
