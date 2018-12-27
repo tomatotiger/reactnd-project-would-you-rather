@@ -9,7 +9,7 @@ const LeaderBoard = props =>
       <ul>
         {props.topThree.map((u, i) => (
           <li key={u.id} className='leader-board-item'>
-            <div class='triangle'>
+            <div className='triangle'>
               <span className={`top${i + 1}`}>
                 <IoMdTrophy />
               </span>

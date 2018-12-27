@@ -52,7 +52,7 @@ class NewQuestion extends Component {
       <div className='content new-question'>
         <h3 className='title'>Create New Question</h3>
         <p>Complete the question:</p>
-        <h5>Qould you rather ...</h5>
+        <h5>Would you rather ...</h5>
         <form onSubmit={this.handleSubmit} className='pure-form pure-form-stacked'>
           <div className='new-question-form'>
             <input

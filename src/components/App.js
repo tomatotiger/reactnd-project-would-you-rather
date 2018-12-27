@@ -104,7 +104,7 @@ const NoMatch = ({ location }) => (
   <div>
     <h2>404</h2>
     <h3>
-      No match for <code>{location.pathname}</code>
+      No match for <code>{location.pathname}</code>, 
       Go back to the <Link to='/'>Homepage</Link>.
     </h3>
   </div>

@@ -79,13 +79,27 @@ p {
 
 .nav-user {
   margin-left: 2em;
+  vertical-align: middle;
+  height: 32px;
+  padding-bottom: 2px;
+}
+
+.pure-menu-link{
+  padding: 0.5em 2em;
+}
+.pure-menu-link:hover,
+.menu-selected{
+  background-color: #2fbea4;
+  color: white;
+   -webkit-clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
 }
 
 .avatar-small {
-  width: 20px;
-  height: 20px;
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
-  margin: auto 20px auto 15px;
+  margin: 0px 20px 0px 15px;
 }
 
 .logout-button {
