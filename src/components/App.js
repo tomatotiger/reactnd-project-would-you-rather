@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  Switch
+} from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import Nav from './Nav'
@@ -21,31 +27,34 @@ class App extends Component {
       <Router>
         <div>
           <LoadingBar style={{ zIndex: '4', backgroundColor: 'grey' }} />
-          <Route path='/login' exact component={Login} />
-          <PrivateRoute
-            path='/'
-            exact
-            authedUser={authedUser}
-            component={Wrapper(Home)}
-          />
-          <PrivateRoute
-            path='/question/:qid'
-            exact
-            authedUser={authedUser}
-            component={Wrapper(QuestionPage)}
-          />
-          <PrivateRoute
-            path='/new'
-            exact
-            authedUser={authedUser}
-            component={Wrapper(NewQuestion)}
-          />
-          <PrivateRoute
-            path='/leader-board'
-            exact
-            authedUser={authedUser}
-            component={Wrapper(LeaderBoard)}
-          />
+          <Switch>
+            <Route path='/login' exact component={Login} />
+            <PrivateRoute
+              path='/'
+              exact
+              authedUser={authedUser}
+              component={Wrapper(Home)}
+            />
+            <PrivateRoute
+              path='/questions/:qid'
+              exact
+              authedUser={authedUser}
+              component={Wrapper(QuestionPage)}
+            />
+            <PrivateRoute
+              path='/add'
+              exact
+              authedUser={authedUser}
+              component={Wrapper(NewQuestion)}
+            />
+            <PrivateRoute
+              path='/leaderboard'
+              exact
+              authedUser={authedUser}
+              component={Wrapper(LeaderBoard)}
+            />
+            <Route component={NoMatch} />
+          </Switch>
         </div>
       </Router>
     )
@@ -82,12 +91,24 @@ const Wrapper = Component => {
       </div>
       <div className='footer'>
         <p>
-          designed by <a href='https://www.flaticon.com/authors/freepik'>Freepik</a> from <a href='https://www.flaticon.com/'>Flaticon</a>
+          designed by{' '}
+          <a href='https://www.flaticon.com/authors/freepik'>Freepik</a> from{' '}
+          <a href='https://www.flaticon.com/'>Flaticon</a>
         </p>
       </div>
     </div>
   )
 }
+
+const NoMatch = ({ location }) => (
+  <div>
+    <h2>404</h2>
+    <h3>
+      No match for <code>{location.pathname}</code>
+      Go back to the <Link to='/'>Homepage</Link>.
+    </h3>
+  </div>
+)
 
 const mapStateToProps = ({ authedUser }) => ({ authedUser })
 export default connect(mapStateToProps)(App)

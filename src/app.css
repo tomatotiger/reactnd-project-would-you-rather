@@ -235,7 +235,6 @@ p {
 }
 
 .question-box-avatar {
-  height: 242px;
   float: left;
   display: flex;
   align-items: center;

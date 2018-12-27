@@ -19,7 +19,7 @@ const QuestionItem = props => {
         <div className='question-summary'>
           <h5>Would you rather</h5>
           <span>{summary}</span>
-          <Link to={`/question/${qid}`} className='question-item-link'>
+          <Link to={`/questions/${qid}`} className='question-item-link'>
             View Poll
           </Link>
         </div>
