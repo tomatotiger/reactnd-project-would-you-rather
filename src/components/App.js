@@ -82,9 +82,7 @@ const Wrapper = Component => {
       </div>
       <div className='footer'>
         <p>
-          designed by
-          <a href='https://www.flaticon.com/authors/freepik'>Freepik</a> from
-          <a href='https://www.flaticon.com/'>Flaticon</a>
+          designed by <a href='https://www.flaticon.com/authors/freepik'>Freepik</a> from <a href='https://www.flaticon.com/'>Flaticon</a>
         </p>
       </div>
     </div>
