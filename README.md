@@ -2,6 +2,9 @@
 
 This is a fun little game. Make a choice between two options, or just ask a question!
 
+Here is the [demo](https://would-you-7liv4tetw.now.sh)
+
+
 ## You can:
 * choose user to login, then you can ask and answer questions.
 * show a list of answered and unanswered questions.
